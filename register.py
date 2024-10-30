@@ -20,7 +20,7 @@ def startregistration():
   global loadingwindow
   loadingwindow = tk.Tk()
   start("Registration - Loading", loadingwindow)
-  for i in range(0, 7):
+  for _ in range(7):
     loadingdots("")
 
 def waithere(waitTime, window):
@@ -32,27 +32,23 @@ def start(nameOfWindow, window):
   window.title(nameOfWindow)
   window.geometry("540x300")
 
-def user_entry_focus(event):
-  global usernamebox
-  global userinputfocused
+def user_entry_focus():
+  global usernamebox, userinputfocused
   userinputfocused = 1
   usernamebox.delete(0, tk.END)
 
-def pass_entry_focus(event):
-  global passbox
-  global passinputfocused
+def pass_entry_focus():
+  global passbox, passinputfocused
   passinputfocused = 1
   passbox.delete(0, tk.END)
 
-def repass_entry_focus(event):
-  global repassbox
-  global repassinputfocused
+def repass_entry_focus():
+  global repassbox, repassinputfocused
   repassinputfocused = 1
   repassbox.delete(0, tk.END)
 
-def email_entry_focus(event):
-  global emailbox
-  global emailinputfocused
+def email_entry_focus():
+  global emailbox, emailinputfocused
   emailinputfocused = 1
   emailbox.delete(0, tk.END)
 
