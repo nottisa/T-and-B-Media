@@ -7,15 +7,7 @@ usemongodb = False
 
 #AUTHLOGIN##############################################
 def authlogins():
-  global displaywidget
-  global usernameinput
-  global passwordinput
-  global usernamebox
-  global passwordbox
-  global actualpassword
-  global cookie
-  global userid
-  global loginwindow
+  global displaywidget, usernameinput, passwordinput, usernamebox, passwordbox, actualpassword, cookie, userid, loginwindow
   displaywidget = 1
   usernameinput = usernamebox.get()
   passwordinput = passwordbox.get()
@@ -32,24 +24,16 @@ def authlogins():
     print("Mongo DB is not currentlly supported, an error may occur.")
     db=mongodbclient.test
   else:
-   try:
-    actualpassword = db[usernameinput]
-    actualpassexists = 1
-   except:
-      actualpassexists = 0
-   if actualpassexists != 0 and actualpassword == passwordinput:
-     cookiemake = 1
-     while cookiemake == 1:
-      userid = db[usernameinput + "id"]
-      possiblecookie = secrets.token_urlsafe(38)
-      try:
-        cookie = db["cookie" + possiblecookie]
-      except:
-        cookiemake = 0
-        cookie = possiblecookie
-        db["cookie" + possiblecookie] = possiblecookie
-        loginwindow.destroy()
-        print("Servers: Connected")
+    if db.get(usernameinput) == passwordinput:
+      while True:
+        userid = db[usernameinput + "id"]
+        possiblecookie = secrets.token_urlsafe(38)
+        if not db.get("cookie" + possiblecookie):
+          cookie = possiblecookie
+          db["cookie" + possiblecookie] = possiblecookie
+          loginwindow.destroy()
+          print("Servers: Connected")
+          break
    else:
      if displaywidget == 1:
          errortext.pack()
