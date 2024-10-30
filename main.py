@@ -1,12 +1,8 @@
 ####IMPORT##############################################
 import tkinter as tk
-#import os
-#import sys
 from keep_alive import keep_alive
 import secrets, sys, os, time, register, login
 from replit import db
-#import time
-#from pymongo import MongoClient
 from pprint import pprint
 ########################################################
 
@@ -18,8 +14,6 @@ userinputfocused = 0
 passinputfocused = 0
 usemongodb = 0
 displaywidget = 1
-#mongodbclient = MongoClient(os.environ['mongoacesslink']
-#)
 class Error(Exception):
     """Base class for other exceptions"""
     pass
